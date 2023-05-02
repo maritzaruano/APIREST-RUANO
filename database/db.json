@@ -1,0 +1,45 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Sandra",
+      "apellido": "Rojas",
+      "email": "sandra.rojase@gmail.com",
+      "password": "123456",
+      "token": "47tYY77hpo3709igDDfr",
+      "role": "admin"
+    },
+    {
+      "nombre": "Francis",
+      "apellido": "Diaz",
+      "email": "francis.diaz@gmail.com",
+      "password": "123456",
+      "token": "7ytuUIPcvt422WSSaazzasgyhdhw",
+      "role": "user",
+      "id": 2
+    }
+  ],
+  "cursos": [
+    {
+      "id": 1,
+    "nombre": "Angular",
+    "fecha_fin": "2023-04-27T01:27:59.631Z",
+    "fecha_inicio": "2023-04-27T01:27:59.631Z",
+    "tutor": "Fredy Lezama"
+    },
+    {
+      "id": 2,
+    "nombre": "Javascript",
+    "fecha_fin":"2023-04-27T01:27:59.631Z",
+    "fecha_inicio": "2023-04-27T01:27:59.631Z",
+    "tutor": "Josue  Baez"
+    },
+    {
+      "id": 3,
+    "nombre": "Desarrollo Web",
+    "fecha_fin": "new Date()",
+    "fecha_inicio":"new Date()",
+    "tutor": "Profe Guille"
+    }
+  ]
+}
