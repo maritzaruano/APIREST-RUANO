@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Curso } from './models';
 import { MatDialog } from '@angular/material/dialog';
 import { AbmCursosComponent } from './components/abm-cursos/abm-cursos.component';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cursos',
@@ -24,14 +24,18 @@ export class CursosComponent implements OnInit {
     'editar',
     'eliminar',
   ];
-
+  cursosSuscription: Subscription | null = null;
   constructor(
     private cursosService: CursosService,
     private dialog: MatDialog
-  ) {}
+  )  {
+  }
+  ngOnDestroy(): void {
+    this.cursosSuscription?.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.cursosService.obtenerCursos().subscribe({
+    this.cursosSuscription = this.cursosService.obtenerCursos().subscribe({
       next: (cursos) => {
         this.dataSource.data = cursos;
       },

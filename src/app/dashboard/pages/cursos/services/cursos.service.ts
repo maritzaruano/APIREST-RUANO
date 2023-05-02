@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, take } from 'rxjs';
+import { BehaviorSubject, Observable, map, mergeMap, take, tap } from 'rxjs';
 import { CrearCursoPayload, Curso } from '../models';
+import { HttpClient } from '@angular/common/http';
+import { enviroment } from 'src/environments/environments';
 
 const CURSOS_MOCKS: Curso[] = [
   {
@@ -34,12 +36,22 @@ export class CursosService {
     []
   );
 
-  constructor() {}
-
-  obtenerCursos(): Observable<Curso[]> {
-    this.cursos$.next(CURSOS_MOCKS);
+  constructor(
+    private httpCliente: HttpClient
+  ) {}
+  
+  get cursos(): Observable<Curso[]> {
     return this.cursos$.asObservable();
   }
+
+  obtenerCursos(): Observable<Curso[]> {
+    return this.httpCliente.get<Curso[]>(`${enviroment.apiBaseUrl}/cursos`)
+      .pipe(
+        tap((cursos) => this.cursos$.next(cursos)),
+        mergeMap(() => this.cursos$.asObservable())
+      );
+  }
+
 
   getCursoById(cursoId: number): Observable<Curso | undefined> {
     return this.cursos$.asObservable()
