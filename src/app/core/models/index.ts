@@ -5,4 +5,5 @@ export interface Usuario {
   email: string;
   role:string;
   token: string;
+  password: string;
 }
